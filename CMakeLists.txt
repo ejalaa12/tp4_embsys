@@ -10,6 +10,6 @@ set(SOURCE_SERVER
 set(SOURCE_SYSLOG
         src/syslog/syslog.c)
 
-add_executable(client SOURCE_CLIENT)
-add_executable(server SOURCE_SERVER)
-add_executable(syslog SOURCE_SYSLOG)
+add_executable(client ${SOURCE_CLIENT})
+add_executable(server ${SOURCE_SERVER})
+add_executable(syslog ${SOURCE_SYSLOG})
