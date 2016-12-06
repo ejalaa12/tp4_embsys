@@ -8,7 +8,6 @@
 #include <string.h>
 #include <sys/types.h>
 #include <syslog.h>
-
 #include <signal.h>
 
 static volatile int keepRunning = 1;
@@ -60,6 +59,9 @@ int main(int argc, char *argv[])
         if (bytes > 0)
         close(connfd);
             syslog(LOG_NOTICE, "Message received: %s", recv_buff);
+        // Print le message puis flush juste après
+        printf(recv_buff);
+        fflush(stdout);
     }
 
 

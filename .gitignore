@@ -35,3 +35,7 @@
 # Clionfiles
 *.xml
 .idea/*
+
+# Build and CMakeFiles folders
+build/
+CMakeFiles/
