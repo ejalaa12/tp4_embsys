@@ -9,8 +9,20 @@
 #include <sys/types.h>
 #include <syslog.h>
 
+#include <signal.h>
+
+static volatile int keepRunning = 1;
+
+void intHandler(int dummy) {
+    printf("CTRL-C Catched\n");
+    keepRunning = 0;
+}
+
 int main(int argc, char *argv[])
 {
+
+    signal(SIGINT, intHandler);
+
     // var
     int listenfd = 0, connfd = 0;
     struct sockaddr_in serv_addr;
@@ -40,7 +52,7 @@ int main(int argc, char *argv[])
 
     // listen
     printf("Server is listening...\n");
-    while (1)
+    while (keepRunning)
     {
         connfd = accept(listenfd, (struct sockaddr*)NULL, NULL);
         int bytes = read(connfd, recv_buff, sizeof(recv_buff)-1);
@@ -49,6 +61,7 @@ int main(int argc, char *argv[])
         close(connfd);
             syslog(LOG_NOTICE, "Message received: %s", recv_buff);
     }
+
 
     close(listenfd);
     closelog();
