@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
         close(connfd);
             syslog(LOG_NOTICE, "Message received: %s", recv_buff);
         printf(recv_buff);
+        fflush(stdout);
     }
 
 
