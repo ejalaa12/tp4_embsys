@@ -34,3 +34,4 @@
 
 # Clionfiles
 *.xml
+.idea/*
